@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { PORT } = require("./config/server_config");
 const ApiGateway = require("./routes/index");
+const morgan = require("morgan");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -12,7 +13,7 @@ app.use(
     extended: true,
   })
 );
-
+app.use(morgan('dev'));
 app.use("/api", ApiGateway);
 
 const createAndStartServerRequest = () => {
